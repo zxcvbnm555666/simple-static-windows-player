@@ -29,7 +29,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <FFmpegStaticRoot Condition="'$(FFmpegStaticRoot)'==''">$(ProjectDir)..\..</FFmpegStaticRoot>
+    <FFmpegStaticRoot Condition="'$(FFmpegStaticRoot)'==''">$(ProjectDir)</FFmpegStaticRoot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>

@@ -21,13 +21,33 @@ FFmpeg and SDL2 libraries.
 - Windows 10 or later (x64)
 - Visual Studio 2019 with Desktop development with C++
 - Windows 10 SDK
-- Statically compiled FFmpeg and SDL2 development files
+- PowerShell 5.1 or later to download the prebuilt static libraries
 
-The dependency root must use this layout:
+FFmpeg and SDL2 headers are included in this repository. The prebuilt x64
+static libraries are published as a GitHub Release asset.
+
+## Quick start
+
+Clone the repository and download the verified dependency package:
+
+```powershell
+git clone https://github.com/zxcvbnm555666/simple-static-windows-player.git
+cd simple-static-windows-player
+.\setup-dependencies.ps1
+```
+
+If script execution is disabled for the current PowerShell session:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\setup-dependencies.ps1
+```
+
+The script downloads `ffmpeg-sdl-static-win64.zip` from release `v1.0.0`,
+verifies its SHA-256 checksum, and extracts the libraries into this layout:
 
 ```text
-FFmpegStaticRoot/
-`-- msvc/
+simple-static-windows-player/
+|-- msvc/
     |-- include/
     |   |-- SDL/
     |   |-- libavcodec/
@@ -39,15 +59,17 @@ FFmpegStaticRoot/
             |-- libavformat.lib
             |-- libsdl2.lib
             `-- ...
+`-- video_player.sln
 ```
 
-Third-party static libraries are not committed because they are large and
-have their own license requirements.
+The library archive is about 95 MiB. It is stored in GitHub Releases because
+`libavcodec.lib` exceeds GitHub's 100 MB per-file Git limit.
 
-## Configure dependencies
+## Use another dependency build
 
-The project resolves dependencies through the `FFmpegStaticRoot` MSBuild
-property. Choose either option below.
+By default the project uses the downloaded `msvc` directory in the repository.
+To use another compatible static build, override the `FFmpegStaticRoot`
+MSBuild property.
 
 ### Environment variable
 
@@ -61,12 +83,9 @@ msbuild .\video_player.sln /p:Configuration=Release /p:Platform=x64
 Copy `Directory.Build.props.example` to `Directory.Build.props`, then update
 the path. The local file is excluded by `.gitignore`.
 
-If the property is not set, the project defaults to the original `..\..`
-repository layout.
-
 ## Build
 
-1. Configure `FFmpegStaticRoot`.
+1. Run `setup-dependencies.ps1`.
 2. Open `video_player.sln` with Visual Studio 2019.
 3. Select `Release | x64`.
 4. Build the solution.
@@ -77,8 +96,8 @@ The executable is generated at:
 bin/x64/Release/ffmpeg_video_player.exe
 ```
 
-All third-party dependencies must be provided as static libraries. Windows
-system components are still provided by the operating system.
+The FFmpeg and SDL2 dependencies are statically linked. Windows system
+components are still provided by the operating system.
 
 ## Usage
 

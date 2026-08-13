@@ -1,24 +1,32 @@
 # Third-Party Notices
 
-This repository contains only the player demo source and Visual Studio project
-files. It does not include FFmpeg, SDL2, their source code, or their compiled
-libraries.
+This repository includes FFmpeg and SDL2 development headers. Prebuilt static
+libraries are distributed separately in the `v1.0.0` GitHub Release asset.
+The corresponding license texts copied from the build output are available
+under `third_party/licenses`.
 
 ## FFmpeg
 
-FFmpeg is licensed under the GNU Lesser General Public License (LGPL) version
-2.1 or later by default. Optional build settings and third-party libraries can
-make a particular FFmpeg build subject to the GNU General Public License (GPL)
-or additional license terms.
+The provided FFmpeg static build reports `FFMPEG_VERSION` as `4.4.git` and was
+built with these relevant configuration values:
 
-See:
+```text
+CONFIG_GPL=1
+CONFIG_GPLV3=1
+CONFIG_VERSION3=1
+CONFIG_NONFREE=0
+CONFIG_STATIC=1
+```
+
+It includes GPL components such as x264, x265, and Xvid. Consequently, the
+provided FFmpeg binary libraries are subject to GNU GPL version 3 terms, not
+the default FFmpeg LGPL terms. See `third_party/licenses/ffmpeg.txt` and the
+other license files in that directory.
+
+FFmpeg license information:
 
 - https://ffmpeg.org/legal.html
 - https://ffmpeg.org/doxygen/trunk/md_LICENSE.html
-
-Anyone distributing a binary built from this project is responsible for
-checking the configuration and license obligations of the exact FFmpeg static
-libraries used.
 
 ## SDL2
 
@@ -26,7 +34,15 @@ SDL2 is distributed under the zlib License.
 
 See:
 
+- `third_party/licenses/libsdl.txt`
 - https://www.libsdl.org/license.php
+
+## Redistribution
+
+The MIT license in this repository applies only to the original player demo
+source. It does not replace any third-party license. Anyone redistributing the
+static libraries or an executable linked with them must comply with all
+applicable third-party terms, including the GPL source-code requirements.
 
 ## Windows system libraries
 

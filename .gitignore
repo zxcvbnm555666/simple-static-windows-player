@@ -15,6 +15,8 @@ x86/
 
 # Local dependency overrides
 Directory.Build.props
+msvc/lib/
+msvc/licenses/
 
 # Miscellaneous
 *.log
