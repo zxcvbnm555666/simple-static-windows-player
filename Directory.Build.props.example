@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <FFmpegStaticRoot>D:\path\to\ffmpeg_static</FFmpegStaticRoot>
+  </PropertyGroup>
+</Project>

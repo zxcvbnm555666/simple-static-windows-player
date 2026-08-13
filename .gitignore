@@ -1,0 +1,23 @@
+# Visual Studio
+.vs/
+*.VC.db
+*.VC.opendb
+*.suo
+*.user
+
+# Build output
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+
+# Local dependency overrides
+Directory.Build.props
+
+# Miscellaneous
+*.log
+*.tmp
+Thumbs.db
+.DS_Store
